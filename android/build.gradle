@@ -2,7 +2,7 @@ group 'io.github.ponnamkarthik.toast.fluttertoast'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.2.71'
+    ext.kotlin_version = '1.2.61'
     repositories {
         google()
         jcenter()
@@ -26,7 +26,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -38,8 +37,21 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    buildTypes {
+        debug {}
+        release {}
+        profile {
+            initWith debug
+        }
+        dynamicProfile {
+            initWith debug
+        }
+        dynamicRelease {
+            initWith debug
+        }
+    }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
